@@ -1,0 +1,26 @@
+@import url(https://db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book);
+
+body {
+  margin: 0;
+  font-family: "Circular Std Book";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+.button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 5%;
+  background-color: #4db054;
+  border-radius: 35px;
+  box-sizing: border-box;
+  /* box-shadow: -8px 8px 10px 0 rgba(0, 0, 0, 0.16); */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

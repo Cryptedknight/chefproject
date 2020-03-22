@@ -1,0 +1,38 @@
+.Nav {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  margin: 1em 0 0 1em;
+}
+.routes {
+  display: flex;
+}
+.routes div {
+  padding: 5px 20px;
+  margin: 0 10px 0 10;
+  font-weight: bold;
+  display: block;
+}
+.routes div:last-of-type {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+@media all and (max-width: 990px) {
+  .Nav {
+    flex-direction: column;
+  }
+  .logo {
+    margin-top: 10px;
+  }
+  .routes {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
