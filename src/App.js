@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home"
 import Login from './components/loginpage';
-import Dashboard from "./components/Dashboard"
-import Problems from "./components/problems"
+import Dashboard from "./components/Dashboard";
+import Problems from "./components/problems";
+import Selector from "./components/contest";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route exact path = "/problems">
               <Problems/>
+            </Route>
+            <Route exact path = "/selector">
+              <Selector/>
             </Route>
         </Switch>
       </Router>
