@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Leaderboard from "./leaderboard";
  
 export default class Selector extends Component {
     constructor(props) {
@@ -50,6 +51,12 @@ export default class Selector extends Component {
                 {radio_buttons}
                <input type="text" value= {this.state.problem_id} onChange = {this.onTextChange} />
                <button onClick = {this.onButtonClick}>Go</button>
+               <div>
+                   <h2>
+                       Leaderboard
+                   </h2>
+                   <Leaderboard/>
+               </div>
             </div>
         );
     }

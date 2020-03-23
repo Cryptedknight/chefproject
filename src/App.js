@@ -2,10 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home"
-import Login from './components/loginpage';
 import Dashboard from "./components/Dashboard";
 import Problems from "./components/problems";
-import Selector from "./components/contest";
+import ContestPage from "./components/contest";
 
 function App() {
   return (
@@ -22,8 +21,8 @@ function App() {
             <Route exact path = "/problems">
               <Problems/>
             </Route>
-            <Route exact path = "/selector">
-              <Selector/>
+            <Route exact path = "/contest">
+              <ContestPage/>
             </Route>
         </Switch>
       </Router>
