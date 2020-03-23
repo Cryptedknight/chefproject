@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 //import { logout, isLogin } from '../utils';
 import { Link } from 'react-router-dom';
+import Login from "./loginpage";
 
 class Home extends Component {
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            isLogin: false
-        }
-    }
+    //     this.state = {
+    //         isLogin: false
+    //     }
+    // }
 
-    handleLogout = () => {
-        this.setState({
-            isLogin: false
-        })
-    }
+    // handleLogout = () => {
+    //     this.setState({
+    //         isLogin: false
+    //     })
+    // }
 
     render() {
         return (
             <div>
                 <h1>Codechef demo webapp</h1>
+                <Login/>
 
-                {this.state.isLogin ? 
-                    <button onClick={() => this.handleLogout()}>Click here to log out</button>
-                    : <Link to="/login">Go to login in page</Link>
-                }
             </div>
         );
     }
