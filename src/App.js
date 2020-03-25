@@ -1,33 +1,41 @@
-import React from "react";
+import React, { Component } from 'react'
+import Home from './pages/home/Home'
+import Selector from './pages/selection/Selector'
+import ContestPage from './pages/contest/ContestPage'
+import ProblemSection from './pages/problem/problem_section/ProblemSection'
+import Problem from './pages/problem/Problem'
+import SuccessSection from './pages/problem/success_section/SuccessSection'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home"
-import Dashboard from "./components/Dashboard";
-import Problems from "./components/problems";
-import ContestPage from "./components/contest";
 
-function App() {
-  return (
-    <>
-      <Navbar />
+export default class App extends Component {
+  
+  render() {
+    return (
+      <>
       <Router>
         <Switch>
-            <Route exact path ="/">
-              <Home/>
-            </Route>
-            <Route exact path = "/dashboard">
-              <Dashboard/>
-            </Route>
-            <Route exact path = "/problems">
-              <Problems/>
-            </Route>
-            <Route exact path = "/contest">
-              <ContestPage/>
-            </Route>
+          <Route exact path = "/">
+            <Home/>
+          </Route>
+          <Route exact path = "/contest">
+            <ContestPage/>
+          </Route>
+          <Route exact path = "/success">
+            <SuccessSection/>
+          </Route>
+          <Route exact path = "/problem">
+            <Problem/>
+          </Route>
+          <Route exact path = "/probsec">
+            <ProblemSection/>
+          </Route>
+          <Route exact path = "/select">
+            <Selector/>
+          </Route>
         </Switch>
       </Router>
-    </>
-  );
+      </>
+    )
+  }
 }
 
-export default App;
