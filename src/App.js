@@ -5,9 +5,10 @@ import ContestPage from './pages/contest/ContestPage'
 import ProblemSection from './pages/problem/problem_section/ProblemSection'
 import Problem from './pages/problem/Problem'
 import SuccessSection from './pages/problem/success_section/SuccessSection'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { withRouter, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import {browserHistory} from 'react-router';
 
-export default class App extends Component {
+class App extends Component {
   
   render() {
     return (
@@ -17,7 +18,7 @@ export default class App extends Component {
           <Route exact path = "/">
             <Home/>
           </Route>
-          <Route exact path = "/contest">
+          <Route exact path = "/contest/:contestID">
             <ContestPage/>
           </Route>
           <Route exact path = "/success">
@@ -39,3 +40,4 @@ export default class App extends Component {
   }
 }
 
+export default withRouter(App);

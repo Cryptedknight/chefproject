@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
+import Autocomplete from 'react-autocomplete';
 import Logout from '../../global_components/logout/Logout'
 import './selector.css'
-export default class Selector extends Component {
+import { withRouter } from 'react-router-dom';
+
+const contests = require('../../contests');
+
+class Selector extends Component {
     constructor(props) {
       super(props);
 
         this.state = {
+            results : [],
             isContestCodeSelected: 0,
             problem_id : "Enter Problem Code",
+            value: "",
+            item:{},
         }
 
         this.onRadioChange = this.onRadioChange.bind(this);
@@ -29,6 +37,37 @@ export default class Selector extends Component {
 
     onButtonClick(){
         //Make a request for the stored problem id according to the radio button selected
+        // console.log(this.state.value);
+        if(contests.result.data.content.contestList.indexOf(this.state.item) > -1)
+        {
+            if(this.state.item.code===this.state.value || this.state.item.name===this.state.value)
+            {
+                this.props.history.push(`/contest/${this.state.item.code}`)
+            }
+        }
+    }
+
+    fetchdata = async endpoint =>{
+        const response = await fetch(endpoint)
+        console.log("this",response);
+        const json = await response.json()
+        console.log(json)
+        this.setState({
+            results : json
+        });
+    }
+    options = {
+        method : "GET",
+        headers : {
+            Authorization: '2908e5281a30749be4ba780da4ac5f57b831b94c',
+            "Content-Type": "application/json",
+        },
+    }
+
+    
+    componentDidMount(){
+        console.log("this")
+        this.fetchdata("https://api.codechef.com/contests/",this.options)
     }
 
     render() {
@@ -43,15 +82,34 @@ export default class Selector extends Component {
 
         return (
             <>
-                <div>
-                    <Logout />
-                </div>
-                <div>
+                <div className="searchbar">
                     {radio_buttons}
-                    <input type="text" value= {this.state.problem_id} onChange = {this.onTextChange} />
-                    <button onClick = {this.onButtonClick}>Open</button>
+                    {/* <input type="text" value= {this.state.problem_id} onChange = {this.onTextChange} /> */}
+                    <Autocomplete 
+                        getItemValue={(item) => this.state.isContestCodeSelected?item.code:item.name}
+                        items={contests.result.data.content.contestList}
+                        renderItem={(item, isHighlighted) =>
+                            this.state.isContestCodeSelected?
+                                (item.code.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1 ?
+                                <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                                    {item.code}
+                                </div> : <div></div>):
+                                (item.name.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1 ?
+                                <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                                    {item.name}
+                                </div> : <div></div>)
+                        }
+                        value={this.state.value}
+                        onChange={(e) => this.setState({value: e.target.value})}
+                        onSelect={(val,item) => this.setState({value: val,item: item})}>
+                    </Autocomplete>
+                    <button onClick = {this.onButtonClick.bind(this)}>Open</button>
+                </div>
+                <div className="logout">
+                    <Logout />
                 </div>
             </>
         );
     }
 }
+export default withRouter(Selector);

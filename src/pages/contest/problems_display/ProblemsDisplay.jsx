@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './problems_display.css'
-
+import data from '../../../contest';
+import {Link} from 'react-router-dom';
 export default class ProblemsDisplay extends Component {
 
     constructor(props) {
@@ -14,21 +15,7 @@ export default class ProblemsDisplay extends Component {
 
     test() {
         this.setState({
-            prob_array: [
-                {
-                    id: 1,
-                    text: "Chef and Blah"
-                },
-                {
-                    id: 2,
-                    text: "Chef and Bleh"
-                
-                },
-                {
-                    id: 3,
-                    text: "Chef and Bloo"
-                }
-            ]
+            prob_array: data.result.data.content.problemsList
         })
     }
 
@@ -42,16 +29,12 @@ export default class ProblemsDisplay extends Component {
     }
 
     render() {
-        const bar = (
-            <ul className = "pr">
-                {this.state.prob_array.map(prob => (
-                <li key={prob.id}>{prob.text}</li>
-                ))}
-            </ul>
-        );
+        const bar = this.state.prob_array.map(prob => (
+                <div className="prob" key={prob.problemCode} ><Link to={`problem/${prob.problemCode}`}>{prob.problemCode}</Link></div>
+        ));
     
         return (
-            <div>
+            <div className="probs">
                {bar} 
             </div>
         )

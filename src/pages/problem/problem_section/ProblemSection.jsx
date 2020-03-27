@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./problem_section.css"
+
 export default class ProblemSection extends Component {
 
     constructor(props) {
@@ -86,8 +87,9 @@ export default class ProblemSection extends Component {
 
         return (
             <div>
-                <label classname="prb">{this.state.problem_txt}</label>
-                <div>{IO}</div>
+                <div dangerouslySetInnerHTML={{__html: this.props.data.body}}></div>
+                {/* <label classname="prb">{this.state.problem_txt}</label>
+                <div>{IO}</div> */}
             </div>
         )
     }

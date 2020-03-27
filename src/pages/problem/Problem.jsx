@@ -4,9 +4,13 @@ import SubmitSection from './submit_section/SubmitSection'
 import Tabs from '../../global_components/tab_controller/Tabs'
 import Logout from '../../global_components/logout/Logout';
 import SuccessSection from './success_section/SuccessSection';
-
+import Timer from '../../global_components/timer/Timer';
+// import {data} from '../../problem';
 import './problem.css'
 
+
+const problem = require('../../problem');
+const contest = require('../../contest');
 export default class Problem extends Component {
 
     constructor(props) {
@@ -31,24 +35,28 @@ export default class Problem extends Component {
         return (
             <>
                 
-                <div className="flexed">
-                    <h1>{this.state.problem_id}</h1>
-                    <div className="logout"><Logout /></div>
+            <div className="problem_header_flex">
+                <div className="problem_header">
+                    <div className="problem_name">{problem.result.data.content.problemName}</div>
+                    <div className="problem_code">Problem Code: {problem.result.data.content.problemCode}</div>
+                    <div className="timer"><Timer startDate={contest.result.data.content.startDate} endDate={contest.result.data.content.endDate}/></div>
                 </div>
+                <div className="logout"><Logout /></div>
+            </div>
 
-            <div className="flexed">    
-                <div>
+            <div className="problem_content_flex">    
+                <div className="problem_content">
                     <Tabs className ="tabs">
                         <div label="Problems">
-                            <ProblemSection/>
+                            <ProblemSection data={problem.result.data.content}/>
                         </div>
 
                         <div label="Submit">
-                            <SubmitSection/>
+                            <SubmitSection data={problem.result.data.content}/>
                         </div>
                     </Tabs>
                 </div>
-                <div>
+                <div className="submissions">
                     <SuccessSection/>
                 </div>
             </div>

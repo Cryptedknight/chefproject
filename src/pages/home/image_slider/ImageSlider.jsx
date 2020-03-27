@@ -29,7 +29,7 @@ class ImgSlider extends React.Component{
                     Click the image to go to next image.
                 </p>
                 <div>
-                    <img src = {this.state.images[this.state.idx] } alt = "Some" onClick = {this.next}/>
+                    <img src = {this.state.images[this.state.idx] } onClick = {this.next}/>
                 </div>
             </div>
         );
