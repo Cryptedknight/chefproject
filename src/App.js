@@ -30,7 +30,7 @@ class App extends Component {
           {/* <Route exact path = "/probsec">
             <ProblemSection/>
           </Route> */}
-          <Route exact path = "/contest">
+          <Route exact path = "/select">
             <Selector/>
           </Route>
         </Switch>

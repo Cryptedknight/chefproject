@@ -14,9 +14,28 @@ var contest = require('../../contest');
 
 class ContestPage extends Component {
 
-    componentDidMount()
-    {
+    fetchdata = async endpoint =>{
+        const response = await fetch(endpoint)
+        console.log("this",response);
+        const json = await response.json()
+        console.log(json)
+        this.setState({
+            results : json
+        });
+    }
+    options = {
+        method : "GET",
+        headers : {
+            Authorization: '2908e5281a30749be4ba780da4ac5f57b831b94c',
+            "Content-Type": "application/json",
+        },
+    }
+
+    
+    componentDidMount(){
         console.log(this.props.match.params.contestID);
+        console.log("this")
+        this.fetchdata("https://api.codechef.com/contests/",this.options)
     }
     render() {
         return (

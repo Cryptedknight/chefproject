@@ -23,13 +23,12 @@ class ImgSlider extends React.Component{
     render(){
         return  (
             <div id = 'img-slider-outer-div'>
-                <label>Image Slider</label>
+                <label>Latest Events</label>
                 <p>
-                    This is an image slider component which is used to display images.<br />
-                    Click the image to go to next image.
+                    Latest Events in the tech industry.(Click on the image to display the next event)
                 </p>
-                <div className = "image">
-                    <img src = {this.state.images[this.state.idx] } onClick = {this.next}/>
+                <div>
+                    <img className="image" alt= "something here" src = {this.state.images[this.state.idx] } onClick = {this.next}/>
                 </div>
             </div>
         );
