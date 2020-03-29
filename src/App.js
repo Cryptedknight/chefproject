@@ -13,9 +13,6 @@ class App extends Component {
   render() {
     return (
       <>
-      <div>
-        hi
-      </div>
       <Router>
         <Switch>
           <Route exact path = "/">
