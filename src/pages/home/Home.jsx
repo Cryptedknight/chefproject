@@ -8,6 +8,7 @@ export default class Home extends Component {
                 <div className="flexed">
                     <div>
                         <Login/>
+                        <ImageSlider/>
                     </div>
                 </div>
             </>

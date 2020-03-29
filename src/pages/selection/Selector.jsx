@@ -85,7 +85,7 @@ class Selector extends Component {
                 <div className="searchbar">
                     {radio_buttons}
                     {/* <input type="text" value= {this.state.problem_id} onChange = {this.onTextChange} /> */}
-                    <Autocomplete 
+                    <Autocomplete
                         getItemValue={(item) => this.state.isContestCodeSelected?item.code:item.name}
                         items={contests.result.data.content.contestList}
                         renderItem={(item, isHighlighted) =>
@@ -103,7 +103,7 @@ class Selector extends Component {
                         onChange={(e) => this.setState({value: e.target.value})}
                         onSelect={(val,item) => this.setState({value: val,item: item})}>
                     </Autocomplete>
-                    <button onClick = {this.onButtonClick.bind(this)}>Open</button>
+                    <button className = "button" onClick = {this.onButtonClick.bind(this)}>Open</button>
                 </div>
                 <div className="logout">
                     <Logout />
