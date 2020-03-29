@@ -13,7 +13,7 @@ class Login extends Component {
         <CodechefLogin
           clientId= 'b72bb32332f46d8452d8b71ad032dc00'
           clientSecret='52a4f0b1db1a39f4555352400fcd1cd6'
-          redirectUri="https://wizardly-curran-c18549.netlify.com/"
+          redirectUri="https://utkarsh-codechef.netlify.com/select/"
           state='state-string'
           onSuccess={responseCodechef}
           onFailure={responseCodechef}
