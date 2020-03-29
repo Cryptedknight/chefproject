@@ -11,9 +11,9 @@ class Login extends Component {
     return (
       <div className='Login'>
         <CodechefLogin
-          clientId= 'b72bb32332f46d8452d8b71ad032dc00'
-          clientSecret='52a4f0b1db1a39f4555352400fcd1cd6'
-          redirectUri="https://wizardly-curran.netlify.com/"
+          clientId= '60e0bcc7d1c6506e92e0f20fd65592c5'
+          clientSecret='b981abbde443dd0fd726d93009db9e81'
+          redirectUri="https://wizardly-curran.netlify.com"
           state='state-string'
           onSuccess={responseCodechef}
           onFailure={responseCodechef}
