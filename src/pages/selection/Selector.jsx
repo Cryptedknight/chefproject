@@ -90,34 +90,35 @@ class Selector extends Component {
                 localStorage.setItem("access",da.result.data.access_token);
                 localStorage.setItem("refresh",da.result.data.refresh_token);
                 console.log("da",da.result.data.access_token);
-            });
+            }).then(this.fetchdata());
       
         
     }
 
-    fetchdata = async endpoint =>{
-        const response = await fetch(endpoint)
-        console.log("this",response);
-        const json = await response.json()
-        //console.log(json)
-        this.setState({
-            results : json
-        });
-    }
-    options = {
-        method : "GET",
-        headers : {
-            Authorization: localStorage.getItem('access'),
-            "Content-Type": "application/json",
-        },
-    }
+    fetchdata(){
+        var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Authorization",localStorage.getItem("access"));
+    //myHeaders.append("Cookie", "PHPSESSID=4b23ed2910ffdbd15ef6c75ed78d2c01");
 
+    var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+
+    fetch("https://api.codechef.com/contests/", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    }
     
     componentDidMount(){
         //console.log("here",this.props.match.params);
         this.getauthtoken();
         this.getaccesstoken();
-        this.fetchdata('https://api.codechef.com/contests',this.options);
+        //this.fetchdata();
         //console.log("this")
     }
 
