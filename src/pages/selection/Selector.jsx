@@ -68,15 +68,17 @@ class Selector extends Component {
 
 
     getaccesstoken(){
+        var mydata = {
+            grant_type: 'authorization_code',
+            code: JSON.stringify(localStorage.getItem('auth')),
+            client_id: data.clientID,
+            client_secret: data.clientSecret,
+            redirect_uri: data.callbackURL
+        }
         fetch(data.tokenURL,
             {   method: 'POST',
-                json:{
-                    grant_type: 'authorization_code',
-                    code: JSON.stringify(localStorage.getItem('auth')),
-                    client_id: data.clientID,
-                    client_secret: data.clientSecret,
-                    redirect_uri: data.callbackURL
-                }
+                headers : {'content-Type': 'application/json'},
+                body : JSON.stringify(mydata)
             }).then(function(resp){
                 return(resp.json);
             }).then(function(da){
