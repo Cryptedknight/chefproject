@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
 import './out.css';
-import {Redirect} from "react-router-dom";
-
+import {Link} from "react-router-dom";
 export default class Logout extends Component {
 
     constructor(props){
         super(props);
-        this.logmeout = this.logmeout.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    logmeout(){
-        return <Redirect to = "/" />
+    handleLogout(){
+        return <Link to = "/" />
     }
 
     render() {
         return (
             <div>
-                <button id="logout" onClick = {this.logmeout}>Logout</button>
+                <Link to ="/">
+                    Logout
+                </Link>
+                {/* <button id="logout" >Logout</button> */}
             </div>
         )
     }
