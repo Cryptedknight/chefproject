@@ -19,12 +19,31 @@ export default class ProblemsDisplay extends Component {
         })
     }
 
-    fetch_problems() {
-        //get problems
+    // fetch_problems() {
+    //     //get problem
+    // }
+
+
+
+    fetchdata = async endpoint =>{
+        const response = await fetch(endpoint)
+        //console.log("this",response);
+        const json = await response.json()
+        //console.log(json)
+        this.setState({
+            results : json
+        });
+    }
+    options = {
+        method : "GET",
+        headers : {
+            Authorization: 'Bearer 05282365850fc8ed41e6f964e8f93f1c0105cd08',
+            "Content-Type": "application/json",
+        },
     }
 
     componentDidMount() {
-        // this.fetch_problems()
+        //this.fetchdata("https://api.codechef.com/contests/",this.options)
         this.test()
     }
 

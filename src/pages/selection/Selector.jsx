@@ -6,10 +6,18 @@ import { withRouter } from 'react-router-dom';
 
 const contests = require('../../contests');
 
+const data = {
+    authorizationURL: 'https://api.codechef.com/oauth/authorize',
+    tokenURL: 'https://api.codechef.com/oauth/token',
+    clientID: '60e0bcc7d1c6506e92e0f20fd65592c5',
+    clientSecret: 'b981abbde443dd0fd726d93009db9e81',
+    callbackURL: 'http://localhost:3000/select',
+    //userProfileURL: 'https://api.codechef.com/users/me'
+  }
+
 class Selector extends Component {
     constructor(props) {
       super(props);
-
         this.state = {
             results : [],
             isContestCodeSelected: 0,
@@ -29,6 +37,17 @@ class Selector extends Component {
         })
     }
 
+
+    
+    
+    getauthtoken(){
+        var urlobj = new URL(window.location.href);
+        var authtoken = urlobj.searchParams.get('code');
+        console.log("auth",authtoken);
+        localStorage.setItem('auth',JSON.stringify(authtoken));
+        var authh = JSON.parse(localStorage.getItem('auth'));
+        console.log("this auth",authh);
+    }
     onTextChange(evt){
         this.setState({
           problem_id : evt.target.value
@@ -47,11 +66,29 @@ class Selector extends Component {
         }
     }
 
+
+    getaccesstoken(){
+        fetch(data.tokenURL,
+            {   method: 'POST',
+                json:{
+                    grant_type: 'authorization_code',
+                    code: JSON.stringify(localStorage.getItem('auth')),
+                    client_id: data.clientID,
+                    client_secret: data.clientSecret,
+                    redirect_uri: data.callbackURL
+                }
+            }).then(function(resp){
+                return(resp.json);
+            }).then(function(da){
+                console.log("token",da);
+            });
+    }
+
     fetchdata = async endpoint =>{
         const response = await fetch(endpoint)
         console.log("this",response);
         const json = await response.json()
-        console.log(json)
+        //console.log(json)
         this.setState({
             results : json
         });
@@ -59,15 +96,17 @@ class Selector extends Component {
     options = {
         method : "GET",
         headers : {
-            Authorization: '2908e5281a30749be4ba780da4ac5f57b831b94c',
+            Authorization: JSON.parse(localStorage.getItem('auth')),
             "Content-Type": "application/json",
         },
     }
 
     
     componentDidMount(){
-        console.log("this")
-        this.fetchdata("https://api.codechef.com/contests/",this.options)
+        //console.log("here",this.props.match.params);
+        this.getauthtoken();
+        this.getaccesstoken();
+        //console.log("this")
     }
 
     render() {

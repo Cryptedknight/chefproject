@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import CodechefLogin from 'react-codechef-login';
 import './login.css';
+import {withRouter} from "react-router-dom";
 
 const responseCodechef = response => {
-  console.log(response)
+  console.log("token",response)
 }
 
 class Login extends Component {
+
   render() {
     return (
       <div className='Login'>
@@ -27,4 +29,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
