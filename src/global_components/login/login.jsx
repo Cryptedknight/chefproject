@@ -15,6 +15,10 @@ class Login extends Component {
         <h1>
           Codechef_Demo WebApp
         </h1>
+        <hr/>
+        <p>
+          Click on Login Now button to use the webapp.
+        </p>
         <CodechefLogin
           clientId= '60e0bcc7d1c6506e92e0f20fd65592c5'
           clientSecret='b981abbde443dd0fd726d93009db9e81'

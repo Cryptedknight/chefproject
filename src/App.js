@@ -12,7 +12,7 @@ class App extends Component {
   
   render() {
     return (
-      <>
+      <div className = "Applet">
       <Router>
         <Switch>
           <Route exact path = "/">
@@ -35,7 +35,7 @@ class App extends Component {
           </Route>
         </Switch>
       </Router>
-      </>
+      </div>
     )
   }
 }

@@ -9,7 +9,7 @@ export default class ProblemsDisplay extends Component {
         this.state = {
             prob_array:[]
         }
-        this.fetch_problems = this.fetch_problems.bind(this)
+        //this.fetch_problems = this.fetch_problems.bind(this)
         this.test = this.test.bind(this)
     }
 

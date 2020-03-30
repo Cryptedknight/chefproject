@@ -3,6 +3,7 @@ import Autocomplete from 'react-autocomplete';
 import Logout from '../../global_components/logout/Logout'
 import './selector.css'
 import { withRouter } from 'react-router-dom';
+import axios from "axios";
 
 const contests = require('../../contests');
 
@@ -25,9 +26,11 @@ class Selector extends Component {
             value: "",
             item:{},
         }
-
+        this.getauthtoken = this.getauthtoken.bind(this);
+        this.getaccesstoken = this.getaccesstoken.bind(this);
         this.onRadioChange = this.onRadioChange.bind(this);
         this.onTextChange = this.onTextChange.bind(this);
+        this.fetchdata = this.fetchdata.bind(this);
     }
 
     onRadioChange() {
@@ -44,8 +47,8 @@ class Selector extends Component {
         var urlobj = new URL(window.location.href);
         var authtoken = urlobj.searchParams.get('code');
         console.log("auth",authtoken);
-        localStorage.setItem('auth',JSON.stringify(authtoken));
-        var authh = JSON.parse(localStorage.getItem('auth'));
+        localStorage.setItem('auth',authtoken);
+        var authh = (localStorage.getItem('auth'));
         console.log("this auth",authh);
     }
     onTextChange(evt){
@@ -68,22 +71,28 @@ class Selector extends Component {
 
 
     getaccesstoken(){
+        console.log(data.tokenURL);
         var mydata = {
             grant_type: 'authorization_code',
-            code: JSON.stringify(localStorage.getItem('auth')),
+            code: localStorage.getItem('auth'),
             client_id: data.clientID,
             client_secret: data.clientSecret,
             redirect_uri: data.callbackURL
         }
         fetch(data.tokenURL,
-            {   method: 'POST',
-                headers : {'content-Type': 'application/json'},
+            {
+                method: 'POST',
+                headers : {'Content-Type' : 'application/json'},
                 body : JSON.stringify(mydata)
             }).then(function(resp){
-                return(resp.json);
+                return (resp.json());
             }).then(function(da){
-                console.log("token",da);
+                localStorage.setItem("access",da.result.data.access_token);
+                localStorage.setItem("refresh",da.result.data.refresh_token);
+                console.log("da",da.result.data.access_token);
             });
+      
+        
     }
 
     fetchdata = async endpoint =>{
@@ -98,7 +107,7 @@ class Selector extends Component {
     options = {
         method : "GET",
         headers : {
-            Authorization: JSON.parse(localStorage.getItem('auth')),
+            Authorization: localStorage.getItem('access'),
             "Content-Type": "application/json",
         },
     }
@@ -108,6 +117,7 @@ class Selector extends Component {
         //console.log("here",this.props.match.params);
         this.getauthtoken();
         this.getaccesstoken();
+        this.fetchdata('https://api.codechef.com/contests',this.options);
         //console.log("this")
     }
 

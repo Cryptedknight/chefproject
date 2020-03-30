@@ -1,7 +1,13 @@
 .App {
+  background-color: #282c34;
   text-align: center;
+  color : white;
+  
 }
-
+.Applet{
+  background-color: black;
+  color:white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
