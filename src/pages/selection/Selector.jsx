@@ -12,7 +12,7 @@ const data = {
     tokenURL: 'https://api.codechef.com/oauth/token',
     clientID: '60e0bcc7d1c6506e92e0f20fd65592c5',
     clientSecret: 'b981abbde443dd0fd726d93009db9e81',
-    callbackURL: 'http://localhost:3000/select',
+    callbackURL: 'https://code-int-ud.herokuapp.com/select',
     //userProfileURL: 'https://api.codechef.com/users/me'
   }
 

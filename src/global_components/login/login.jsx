@@ -16,13 +16,13 @@ class Login extends Component {
           Codechef_Demo WebApp
         </h1>
         <hr/>
-        <p>
+        <p className = 'para'>
           Click on Login Now button to use the webapp.
         </p>
         <CodechefLogin
           clientId= '60e0bcc7d1c6506e92e0f20fd65592c5'
           clientSecret='b981abbde443dd0fd726d93009db9e81'
-          redirectUri="http://localhost:3000/select"
+          redirectUri="https://code-int-ud.herokuapp.com/select"
           state='xyzabc'
           buttonText="Login Now"
           onSuccess={responseCodechef}
